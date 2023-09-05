@@ -51,9 +51,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 }
 
 @property (strong, nonatomic) NSCalendar *gregorian;
-@property (strong, nonatomic) NSDateFormatter *formatter;
 @property (strong, nonatomic) NSDateComponents *components;
-@property (strong, nonatomic) NSTimeZone *timeZone;
 
 @property (weak  , nonatomic) UIView                     *contentView;
 @property (weak  , nonatomic) UIView                     *daysContainer;
@@ -103,7 +101,6 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 - (void)selectDate:(NSDate *)date scrollToDate:(BOOL)scrollToDate atMonthPosition:(FSCalendarMonthPosition)monthPosition;
 - (void)enqueueSelectedDate:(NSDate *)date;
 
-- (void)invalidateDateTools;
 - (void)invalidateLayout;
 - (void)invalidateHeaders;
 - (void)invalidateAppearanceForCell:(FSCalendarCell *)cell forDate:(NSDate *)date;
@@ -1142,7 +1139,10 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 - (void)selectDate:(NSDate *)date scrollToDate:(BOOL)scrollToDate atMonthPosition:(FSCalendarMonthPosition)monthPosition
 {
     if (!self.allowsSelection || !date) return;
-        
+    
+    self.gregorian.timeZone = _timeZone;
+    self.calculator.gregorian.timeZone = _timeZone;
+    
     [self requestBoundingDatesIfNecessary];
     
     FSCalendarAssertDateInBounds(date,self.gregorian,self.minimumDate,self.maximumDate);

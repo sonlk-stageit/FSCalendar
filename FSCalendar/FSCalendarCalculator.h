@@ -18,6 +18,7 @@ typedef struct FSCalendarCoordinate FSCalendarCoordinate;
 @interface FSCalendarCalculator : NSObject
 
 @property (weak  , nonatomic) FSCalendar *calendar;
+@property (readonly, nonatomic) NSCalendar *gregorian;
 
 @property (readonly, nonatomic) NSInteger numberOfSections;
 

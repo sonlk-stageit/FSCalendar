@@ -21,7 +21,6 @@
 @property (strong, nonatomic) NSMutableDictionary<NSNumber *, NSDate *> *weeks;
 @property (strong, nonatomic) NSMutableDictionary<NSDate *, NSNumber *> *rowCounts;
 
-@property (readonly, nonatomic) NSCalendar *gregorian;
 @property (readonly, nonatomic) NSDate *minimumDate;
 @property (readonly, nonatomic) NSDate *maximumDate;
 
@@ -43,6 +42,7 @@
         self.monthHeads = [NSMutableDictionary dictionary];
         self.weeks = [NSMutableDictionary dictionary];
         self.rowCounts = [NSMutableDictionary dictionary];
+        self.gregorian.timeZone = self.calendar.timeZone;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNotifications:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
     }

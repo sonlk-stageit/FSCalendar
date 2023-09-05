@@ -295,6 +295,9 @@ IB_DESIGNABLE
  */
 @property (copy, nonatomic) NSLocale *locale;
 
+@property (strong, nonatomic) NSTimeZone *timeZone;
+@property (strong, nonatomic) NSDateFormatter *formatter;
+
 /**
  * The scroll direction of FSCalendar. 
  *
@@ -623,7 +626,7 @@ IB_DESIGNABLE
 - (NSDate *)dateBySubstractingDays:(NSInteger)days fromDate:(NSDate *)date FSCalendarDeprecated([NSCalendar dateByAddingUnit:value:toDate:options:]);
 - (BOOL)isDate:(NSDate *)date1 equalToDate:(NSDate *)date2 toCalendarUnit:(FSCalendarUnit)unit FSCalendarDeprecated([NSCalendar -isDate:equalToDate:toUnitGranularity:]);
 - (BOOL)isDateInToday:(NSDate *)date FSCalendarDeprecated([NSCalendar -isDateInToday:]);
-
+- (void)invalidateDateTools;
 
 @end
 
